@@ -25,6 +25,13 @@ def ApartmentList(request):
 class BookingList(ListView):
     model = Booking
 
+    def get_queryset(self, *args, **kwargs):
+        if self.request.user.is_staff:
+            booking_list = Booking.objects.all()
+        else:
+            booking_list = Booking.objects.filter(user=self.request.user)
+        return booking_list
+
 #детальное представление одной комнаты
 class ApartmentView(View):
     def get(self, request, *args, **kwargs):
