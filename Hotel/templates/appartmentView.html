@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отель "БРС"</title>
+    <link rel="stylesheet" href="{% static 'Hotel/css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Отель "БРС"</h1>
+            <nav>
+                <a href="{% url 'Hotel:ApartmentList' %}"><i class="back_button">Назад</i></a>
+                <ul>
+                    <li><a href="#">Главная</a></li>
+                    <li><a href="#">Номера</a></li>
+                    <li><a href="#">Услуги</a></li>
+                    <li><a href="#">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="apartment_container">
+                <h1 class="h2Class">{{apartment_type}}</h1>
+                <!-- <h2 class="h2Class">Стандартная комната</h2> -->
+                <p>Комната с одной двуспальной кроватью, ванной, хорошим видом из окна. Уют, комфорт за экономичную сумму.</p>
+            </div>
+        </section>
+        <section class="booking-form">
+            <div class="container">
+                <h2>Забронируйте номер</h2>
+                <form action="#" method="POST">
+
+                    {% csrf_token %}
+
+                    <label for="id_date_reg">Дата заезда:</label>
+                    <input type="datetime-local" id="id_date_reg" name="date_reg" required>
+
+                    <label for="id_date_end">Дата выезда:</label>
+                    <input type="datetime-local" id="id_date_end" name="date_end" required>
+
+                    <label for="guests">Количество гостей:</label>
+                    <input type="number" id="guests" name="guests" min="1" required>
+                    <!-- <label for="room-type">Тип номера:</label> -->
+                    <!-- <select id="room-type" name="room-type" required>
+                        <option value="standard">Стандарт</option>
+                        <option value="bedroom">Койко-место</option>
+                        <option value="superior">Суприм-номер</option>
+                        <option value="studio">Студия</option>
+                        <option value="deluxe">Делюкс</option>
+                    </select> -->
+
+                    <button type="submit">Забронировать</button>
+                </form>
+
+                <!-- <h2>Django Form</h2>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <button type="submit">Потвердить</button>
+                </form> -->
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Отель "БРС". Все права защищены (или нет).</p>
+        </div>
+    </footer>
+</body>
+</html>

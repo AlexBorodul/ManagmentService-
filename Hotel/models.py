@@ -2,14 +2,14 @@ from django.db import models
 from django.conf import settings
 
 class Apartment(models.Model):
-    APARTMENT_TYPES = (('STD', 'STANDART'), ('BDR', 'BEDROOM'), ('SPR', 'SUPERIOR'), ('STD', 'STUDIO'), ('DLX', 'DELUXE'))
+    APARTMENT_TYPES = (('STD', 'STANDART'), ('BDR', 'BEDROOM'), ('SPR', 'SUPERIOR'), ('DLX', 'DELUXE'))
     number = models.IntegerField()
     type = models.CharField(max_length=3, choices=APARTMENT_TYPES)
     count_beds = models.IntegerField()
     capacity = models.IntegerField()
 
     def __str__(self):
-        return f"{self.number} room - {self.type} with {self.count_beds} beds for {self.capacity} guests"
+        return f"{self.number} комната - {self.type} с {self.count_beds} спальными местами для {self.capacity} гостей"
 
 class Booking(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -18,5 +18,5 @@ class Booking(models.Model):
     date_end = models.DateTimeField()
 
     def __str__(self):
-        return f"{self.user} booked {self.room} from {self.date_reg} to {self.date_end}"
+        return f"{self.user} зарезервировал {self.room} в период с {self.date_reg} до {self.date_end}"
 
