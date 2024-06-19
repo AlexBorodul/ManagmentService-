@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.urls import reverse_lazy
 
 class Apartment(models.Model):
     APARTMENT_TYPES = (('STD', 'STANDART'), ('BDR', 'BEDROOM'), ('SPR', 'SUPERIOR'), ('DLX', 'DELUXE'))
@@ -20,3 +21,8 @@ class Booking(models.Model):
     def __str__(self):
         return f"{self.user} зарезервировал {self.room} в период с {self.date_reg} до {self.date_end}"
 
+    def get_apartment_type(self):
+        return dict(Apartment.APARTMENT_TYPES).get(self.room.type)
+    
+    def cancel_booking(self):
+        return reverse_lazy('Hotel:CancelBooking', args=[self.pk, ])

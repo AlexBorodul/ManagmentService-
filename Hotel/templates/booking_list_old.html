@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<header>
+    <div class="container">
+        <h1>Отель "БРС"</h1>
+        <nav>
+            <a href="{% url 'Hotel:ApartmentList' %}"><i class="back_button">Назад</i></a>
+            <ul>
+                <li><a href="#">Главная</a></li>
+                <li><a href="#">Номера</a></li>
+                <li><a href="#">Услуги</a></li>
+                <li><a href="#">Контакты</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking list</title>
+</head>
+<body>
+    {%for book in booking_list%}
+    <h2>{{book}}</h2>
+    {% endfor %}
+</body>
+<footer>
+    <div class="container">
+        <p>&copy; 2024 Отель "БРС". Все права защищены (или нет).</p>
+    </div>
+</footer>
+</html>

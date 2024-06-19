@@ -1,22 +1,40 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Отель БРС: Наши номера</title>
     <link rel="stylesheet" href="{% static 'Hotel/css/styles_list.css' %}">
 </head>
-<body>
+<header>
     <div class="container">
-        <h1>Отель БРС: Наши номера</h1>
-        {% for apart_type, apart_url in apartment_list %}
-        <div class="room">
-            <h2><a href="{{apart_url}}">{{apart_type}}</a></h2>
-            <p>Уютный номер с односпальной кроватью, идеальный для одного человека.</p>
-            <p><strong>Удобства:</strong> Односпальная кровать, ванная комната, кондиционер, бесплатный Wi-Fi, телевизор.</p>
+        <h1>Отель "БРС"</h1>
+        <nav>
+            <a href="{% url 'Hotel:ApartmentList' %}"><i class="back_button">Назад</i></a>
+            <ul>
+                <li><a href="{% url 'Hotel:BookingList' %}">Главная</a></li>
+                <li><a href="#">Номера</a></li>
+                <li><a href="#">Услуги</a></li>
+                <li><a href="#">Контакты</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<body>
+    <div>
+        <div class="greeting">
+            <h1>Отель БРС: Наши номера</h1>
         </div>
-        {% endfor %}
+        <div>
+            {% for apart_type, apart_url in apartment_list %}
+            <div class="room, container">
+                <h2><a href="{{apart_url}}">{{apart_type}}</a></h2>
+                <p>Уютный номер с односпальной кроватью, идеальный для одного человека.</p>
+                <p><strong>Удобства:</strong> Односпальная кровать, ванная комната, кондиционер, бесплатный Wi-Fi, телевизор.</p>
+            </div>
+            {% endfor %}
+        </div>
 
         <!-- <div class="room">
             <h2><a href="#room2">Просторный двухместный номер</a></h2>
@@ -43,4 +61,9 @@
         </div> -->
     </div>
 </body>
+<footer>
+    <div class="container">
+        <p>&copy; 2024 Отель "БРС". Все права защищены (или нет).</p>
+    </div>
+</footer>
 </html>
