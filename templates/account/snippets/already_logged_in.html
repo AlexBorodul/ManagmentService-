@@ -1,0 +1,9 @@
+{% load i18n %}
+{% load account %}
+{% load allauth %}
+{% user_display user as user_display %}
+{% element alert %}
+    {% slot message %}
+        <strong>{% blocktranslate %}Запись{% endblocktranslate %}:</strong> {% blocktranslate %}Вы уже вошли в аккаунт {{ user_display }}.{% endblocktranslate %}
+    {% endslot %}
+{% endelement %}

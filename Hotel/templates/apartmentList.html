@@ -27,13 +27,15 @@
             <h1>Отель БРС: Наши номера</h1>
         </div>
         <div>
-            {% for apart_type, apart_url in apartment_list %}
-            <div class="room, container">
-                <h2><a href="{{apart_url}}">{{apart_type}}</a></h2>
-                <p>Уютный номер с односпальной кроватью, идеальный для одного человека.</p>
-                <p><strong>Удобства:</strong> Односпальная кровать, ванная комната, кондиционер, бесплатный Wi-Fi, телевизор.</p>
-            </div>
-            {% endfor %}
+            <form id="booking-form" action="#" method="POST">
+                {% for apart_type, apart_url, apart_description in apartment_list %}
+                <div class="room, container">
+                    <h2><a href="{{apart_url}}">{{apart_type}}</a></h2>
+                    <p>{{apart_description}}</p>
+                    <p><strong>Удобства:</strong> Односпальная кровать, ванная комната, кондиционер, бесплатный Wi-Fi, телевизор.</p>
+                </div>
+                {% endfor %}
+            </form>
         </div>
 
         <!-- <div class="room">

@@ -1,0 +1,29 @@
+{% extends "account/base_entrance.html" %}
+{% load allauth %}
+{% load i18n %}
+{% block head_title %}
+    {% trans "Потвердить доступ" %}
+{% endblock head_title %}
+{% block content %}
+    {% element h1 %}
+        {% trans "Потвердить доступ" %}
+    {% endelement %}
+    {% element p %}
+        {% blocktranslate %}Пожалуйста перезайдите, чтобы потвердить, что это вы.{% endblocktranslate %}
+    {% endelement %}
+    {% block reauthenticate_content %}{% endblock %}
+    {% if reauthentication_alternatives %}
+        {% element hr %}
+        {% endelement %}
+        {% element h2 %}
+            {% translate "Другие опции" %}
+        {% endelement %}
+        <ul>
+            {% for alt in reauthentication_alternatives %}
+                <li>
+                    <a href="{{ alt.url }}">{{ alt.description }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock content %}

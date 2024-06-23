@@ -9,6 +9,7 @@ from Hotel.brone.free_apartment import check_free_apartment
 def ApartmentList(request):
     apartment = Apartment.objects.all()[0]
     apartment_types = dict(apartment.APARTMENT_TYPES)
+    apartment_description = dict(apartment.APARTMENT_DESCRIPTIONS)
     print("типы: ", apartment_types)
     apartment_values = apartment_types.values()
     print("значения: ", apartment_values)
@@ -16,7 +17,8 @@ def ApartmentList(request):
     for type in apartment_types:
         apart = apartment_types.get(type)
         apart_url = reverse('Hotel:ApartmentView', kwargs={'type': type})
-        apartment_list.append((apart, apart_url))
+        apart_description = apartment_description.get(type)
+        apartment_list.append((apart, apart_url, apart_description))
     context = {
         "apartment_list": apartment_list,
     }
@@ -42,9 +44,11 @@ class ApartmentView(View):
         if len(apartment_list) > 0:
             apartment = apartment_list[0]
             apartment_type = dict(apartment.APARTMENT_TYPES).get(apartment.type, None)
+            apartment_description = dict(apartment.APARTMENT_DESCRIPTIONS).get(apartment.type, None)
             context = {
                 'apartment_type': apartment_type,
-                'form': form
+                'form': form,
+                'apartment_description': apartment_description
             }
             return render(request, 'appartmentView.html', context)
         else:
