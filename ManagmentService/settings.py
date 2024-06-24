@@ -139,6 +139,8 @@ USE_I18N = True
 USE_TZ = True
 
 SITE_ID = 1
+
+LOGIN_REDIRECT_URL = '/'
  
 
 

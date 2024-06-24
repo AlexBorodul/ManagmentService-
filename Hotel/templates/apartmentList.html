@@ -5,18 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Отель БРС: Наши номера</title>
+    <link rel='stylesheet' href='https://rawcdn.githack.com/SochavaAG/example-mycode/master/_common/css/reset.css'>
+    <link rel='stylesheet' href='https://raw.githack.com/SochavaAG/example-mycode/master/pens/slick-slider/plugins/slick/slick.css'>
     <link rel="stylesheet" href="{% static 'Hotel/css/styles_list.css' %}">
 </head>
 <header>
     <div class="container">
         <h1>Отель "БРС"</h1>
         <nav>
-            <a href="{% url 'Hotel:ApartmentList' %}"><i class="back_button">Назад</i></a>
+            {% if user.is_authenticated %}
+            <ul class="list_accounts">
+            {% if user.is_staff %}
+                <li class="backButton"><a href="{% url 'Hotel:BookingList' %}">{{user}}(администратор)</a></li>
+            {% else %}
+                <li class="backButton"><a href="{% url 'Hotel:BookingList' %}">{{user}}</a></li>
+            {% endif %}
+                <li class="backButton"><a href="{% url 'account_logout' %}">Выход</a></li>
+            {% else %}
+            <ul class="list_accounts">
+                <li class="backButton"><a href="{% url 'account_login' %}">Войти</a></li>
+                <li class="backButton"><a href="{% url 'account_signup' %}">Зарегестрироваться</a></li>
+            </ul>
+            {% endif %}
             <ul>
-                <li><a href="{% url 'Hotel:BookingList' %}">Главная</a></li>
-                <li><a href="#">Номера</a></li>
-                <li><a href="#">Услуги</a></li>
-                <li><a href="#">Контакты</a></li>
+                <li><a href="{% url 'Hotel:MainPage' %}">Главная</a></li>
+                <li><a href="{% url 'Hotel:ApartmentList' %}">Номера</a></li>
             </ul>
         </nav>
     </div>

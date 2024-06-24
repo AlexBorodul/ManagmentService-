@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import ApartmentList, BookingList, ApartmentView, CancelBooking
+from .views import ApartmentList, BookingList, ApartmentView, CancelBooking, mainPage
 
 app_name = 'Hotel'
 
@@ -8,5 +8,7 @@ urlpatterns = [
     path('booking_list/', BookingList.as_view(), name='BookingList'),
     # path('book/', BookingView.as_view(), name='BookingView'),
     path('apartment/<type>', ApartmentView.as_view(), name='ApartmentView'),
-    path('booking/cancel/<pk>', CancelBooking.as_view(), name='CancelBooking')
+    path('booking/cancel/<pk>', CancelBooking.as_view(), name='CancelBooking'),
+    path('', mainPage, name="MainPage")
+    # path('accounts/<lg>', )
 ]

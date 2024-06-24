@@ -80,6 +80,11 @@ class CancelBooking(DeleteView):
     template_name = 'booking_cancel.html'
     success_url = reverse_lazy('Hotel:BookingList')
 
+def mainPage(request):
+    return render(request, "main_page.html")
+
+# class Loginout(View):
+
 
 # class BookingView(FormView):
 #     form_class = FreeForm

@@ -10,11 +10,11 @@ class Apartment(models.Model):
     number = models.IntegerField()
     type = models.CharField(max_length=3, choices=APARTMENT_TYPES)
     count_beds = models.IntegerField()
-    capacity = models.IntegerField()
+    # capacity = models.IntegerField()
     desription = models.CharField(default='', max_length=10000, choices=APARTMENT_DESCRIPTIONS)
 
     def __str__(self):
-        return f"{self.number} комната - {self.type} с {self.count_beds} спальными местами для {self.capacity} гостей"
+        return f"{self.number} комната - {self.type} с {self.count_beds} спальными местами"
 
 class Booking(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
