@@ -106,3 +106,4 @@ def mainPage(request):
 #             return HttpResponse(booking)
 #         else:
 #             return HttpResponse('Категория комнат забронирована. Попробуйте другую')
+
